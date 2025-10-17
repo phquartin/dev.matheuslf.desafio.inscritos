@@ -24,7 +24,7 @@ public class ProjectController {
     }
     @GetMapping
     public ResponseEntity<Page<ProjectResponse>> findAll(Pageable pageable){
-        return ResponseEntity.ok(service.findAll(pageable));
+        return ResponseEntity.status(200).body(service.findAll(pageable));
     }
 
 }
