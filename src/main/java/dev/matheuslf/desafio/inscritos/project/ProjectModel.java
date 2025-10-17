@@ -14,7 +14,7 @@ public class ProjectModel {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(nullable = false, columnDefinition = "DATE", name = "start_date")
