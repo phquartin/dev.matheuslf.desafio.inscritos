@@ -1,0 +1,29 @@
+GET http://localhost:8080/projects
+
+###
+POST http://localhost:8080/projects
+Content-Type: application/json
+
+{
+  "name": "Project Name"
+}
+
+###
+POST http://localhost:8080/projects
+Content-Type: application/json
+
+{
+  "name": "Project Name 2",
+  "description": "Project Description",
+  "startDate": "2025-10-16",
+  "endDate": "2026-10-16"
+}
+
+###
+POST http://localhost:8080/projects
+Content-Type: application/json
+
+{
+  "name": "Project Name 3",
+  "startDate": "2025-10-17"
+}
