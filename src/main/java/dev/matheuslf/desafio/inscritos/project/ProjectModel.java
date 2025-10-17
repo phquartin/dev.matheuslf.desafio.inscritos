@@ -33,6 +33,10 @@ public class ProjectModel {
 
         if (startDate == null) {
             startDate = LocalDate.now();
+        } else {
+            if(startDate.isBefore(LocalDate.now())){
+                throw new IllegalArgumentException("start date cannot be before today");
+            }
         }
         this.startDate = startDate;
 
