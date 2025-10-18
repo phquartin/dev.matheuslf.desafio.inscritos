@@ -27,9 +27,9 @@ public class TaskController {
 
     @GetMapping()
     public ResponseEntity<Page<TaskResponse>> findAll(
-            @RequestParam Status status,
-            @RequestParam Priority priority,
-            @RequestParam Long projectId,
+            @RequestParam(required = false) Status status,
+            @RequestParam(required = false) Priority priority,
+            @RequestParam(required = false) Long projectId,
             Pageable pageable)
     {
         Page<TaskResponse> allWithFilter = service.findAllWithFilter(pageable, status, priority, projectId);

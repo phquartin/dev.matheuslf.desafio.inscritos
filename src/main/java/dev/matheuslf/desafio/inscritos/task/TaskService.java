@@ -56,7 +56,7 @@ public class TaskService {
             throw new IllegalArgumentException("projectId cannot be null");
         }
 
-        Page<TaskModel> filteredTasks = repository.findByStatusAndPriorityAndProject_Id(status, priority, projectId, pageable);
+        Page<TaskModel> filteredTasks = repository.findTasks(status, priority, projectId, pageable);
         return filteredTasks.map(mapper::toResponse);
     }
 

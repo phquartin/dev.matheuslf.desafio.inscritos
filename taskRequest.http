@@ -1,5 +1,13 @@
-GET http://localhost:8080/tasks
 
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "title": "Task Null",
+  "priority": "MEDIUM",
+  "projectId": 1,
+  "dueDate": "2026-10-22"
+}
 ###
 POST http://localhost:8080/tasks
 Content-Type: application/json
@@ -8,6 +16,35 @@ Content-Type: application/json
   "title": "Task High",
   "priority": "HIGH",
   "status": "DOING",
-  "projectId": 2,
+  "projectId": 1,
   "dueDate": "2026-10-22"
 }
+###
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "title": "Task LOW",
+  "priority": "LOW",
+  "projectId": 2,
+  "dueDate": "2025-10-22"
+}
+###
+GET http://localhost:8080/tasks?projectId=1
+
+###
+GET http://localhost:8080/tasks?priority=LOW
+
+###
+GET http://localhost:8080/tasks?status=TODO&projectId=1
+
+###
+
+PATCH http://localhost:8080/tasks/1/status
+Content-Type: application/json
+
+"DONE"
+
+###
+
+DELETE http://localhost:8080/tasks/1
