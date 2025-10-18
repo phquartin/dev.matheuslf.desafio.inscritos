@@ -1,8 +1,10 @@
 package dev.matheuslf.desafio.inscritos.project;
 
+import dev.matheuslf.desafio.inscritos.task.model.TaskModel;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "project")
@@ -23,6 +25,9 @@ public class ProjectModel {
 
     @Column(columnDefinition = "DATE", name = "end_date")
     private LocalDate endDate;
+
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    private List<TaskModel> tasks;
 
     public ProjectModel() {
     }
@@ -75,5 +80,13 @@ public class ProjectModel {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public List<TaskModel> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<TaskModel> tasks) {
+        this.tasks = tasks;
     }
 }
