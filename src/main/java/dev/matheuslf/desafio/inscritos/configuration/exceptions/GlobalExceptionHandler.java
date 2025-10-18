@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
                 List.of(ex.getMessage() != null ? ex.getMessage() : "Unexpected error"),
                 "500",
                 request.getRequestURI(),
-                LocalDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME),
+                LocalDateTime.now().toString(),
                 "INTERNAL_SERVER_ERROR"
         );
 
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
                 List.of(ex.getMessage() != null ? ex.getMessage() : "Illegal argument"),
                 "400",
                 request.getRequestURI(),
-                LocalDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME),
+                LocalDateTime.now().toString(),
                 "BAD_REQUEST"
         );
         return ResponseEntity.status(400).body(response);
@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
                 errors,
                 "400",
                 request.getRequestURI(),
-                LocalDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME),
+                LocalDateTime.now().toString(),
                 "BAD_REQUEST"
         );
         return ResponseEntity.status(400).body(response);
@@ -71,7 +71,7 @@ public class GlobalExceptionHandler {
                 List.of("Page Not Found"),
                 "404",
                 request.getRequestURI(),
-                LocalDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME),
+                LocalDateTime.now().toString(),
                 "NOT_FOUND"
         );
         return ResponseEntity.status(404).body(response);
