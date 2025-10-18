@@ -28,6 +28,9 @@ public class TaskService {
         if(projectModel.getEndDate() != null && projectModel.getEndDate().isBefore(request.dueDate())){
             throw new IllegalArgumentException("Project end date cannot be before task due date");
         }
+        if(projectModel.getStartDate().isAfter(request.dueDate())){
+            throw new IllegalArgumentException("Project start date cannot be after task due date");
+        }
 
         TaskModel model = mapper.toModel(request);
 
