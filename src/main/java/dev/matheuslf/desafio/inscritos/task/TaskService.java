@@ -38,10 +38,6 @@ public class TaskService {
         TaskModel model = mapper.toModel(request);
 
 
-        if(model.getStatus() == null){
-            model.setStatus(Status.TODO);
-        }
-
         model.setProject(projectModel);
         repository.save(model);
         return mapper.toResponse(model);
@@ -55,6 +51,11 @@ public class TaskService {
     }
 
     public Page<TaskResponse> findAllWithFilter(Pageable pageable, Status status, Priority priority, Long projectId){
+
+        if(projectId == null){
+            throw new IllegalArgumentException("projectId cannot be null");
+        }
+
         Page<TaskModel> filteredTasks = repository.findByStatusAndPriorityAndProject_Id(status, priority, projectId, pageable);
         return filteredTasks.map(mapper::toResponse);
     }
