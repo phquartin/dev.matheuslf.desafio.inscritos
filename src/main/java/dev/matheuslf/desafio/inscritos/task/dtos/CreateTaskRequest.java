@@ -15,8 +15,9 @@ public record CreateTaskRequest(
         @Length(max = 150, message = "title cannot have more than 150 characters")
         String title,
         String description,
-        @NotNull(message = "status cannot be NULL")
+
         Status status,
+
         @NotNull(message = "priority cannot be NULL")
         Priority priority,
         LocalDate dueDate,
