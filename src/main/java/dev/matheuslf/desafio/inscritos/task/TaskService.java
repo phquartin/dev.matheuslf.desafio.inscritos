@@ -40,14 +40,17 @@ public class TaskService {
 
         model.setProject(projectModel);
         repository.save(model);
-        return mapper.toResponse(model);
+        return mapper.toResponse(model, projectModel.getName());
     }
 
     public TaskResponse patchStatus(Status status, Long id){
         TaskModel model = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Task not found"));
         model.setStatus(status);
         repository.save(model);
-        return mapper.toResponse(model);
+
+        ProjectModel projectModel = projectRepository.findById(model.getProject().getId()).orElseThrow(() -> new IllegalArgumentException("Project not found"));
+
+        return mapper.toResponse(model, projectModel.getName());
     }
 
     public Page<TaskResponse> findAllWithFilter(Pageable pageable, Status status, Priority priority, Long projectId){
@@ -57,7 +60,10 @@ public class TaskService {
         }
 
         Page<TaskModel> filteredTasks = repository.findTasks(status, priority, projectId, pageable);
-        return filteredTasks.map(mapper::toResponse);
+
+        ProjectModel projectModel = projectRepository.findById(projectId).orElseThrow(() -> new IllegalArgumentException("Project not found"));
+
+        return filteredTasks.map(taskModel -> mapper.toResponse(taskModel, projectModel.getName()));
     }
 
     public void delete(Long id){
