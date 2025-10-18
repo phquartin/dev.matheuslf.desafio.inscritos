@@ -29,7 +29,7 @@ public class TaskController {
     public ResponseEntity<Page<TaskResponse>> findAll(
             @RequestParam(required = false) Status status,
             @RequestParam(required = false) Priority priority,
-            @RequestParam(required = false) Long projectId,
+            @RequestParam(required = true) Long projectId,
             Pageable pageable)
     {
         Page<TaskResponse> allWithFilter = service.findAllWithFilter(pageable, status, priority, projectId);
